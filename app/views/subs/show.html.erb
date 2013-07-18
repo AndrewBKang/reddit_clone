@@ -1,0 +1,11 @@
+<h5>Sub: <%= @sub.name %></h5>
+<hr>
+<h5>Links</h5>
+<hr>
+<% @sub.links.each do |link|%>
+
+title: <a href="<%= link.url %>"><%= link.title %></a>
+<br>
+body: <%= link.body %>
+<hr>
+<% end %>

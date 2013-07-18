@@ -2,11 +2,18 @@
 <html>
 <head>
   <title>RedditClone</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= debug params %>
+	<br>
+	<%= debug session %>
+	<hr>
+	<br>
+
+<% flash.each do |type, msg| %>
+	<span><strong><%= type %> </strong><%= msg %></span>
+<% end %>
 
 <%= yield %>
 
@@ -14,7 +21,9 @@
 
 <% if logged_in? %>
 <hr>
-<form action="" method="post">
+
+<form action="<%=session_url%>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<input type="hidden" name="_method" value="delete">
 	<input type="submit" value="Sign Out">
 </form>

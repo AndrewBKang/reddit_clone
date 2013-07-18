@@ -1,0 +1,24 @@
+<h3>Create a Sub</h3>
+<form action="<%= subs_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label for="name">Name:</label>
+	<input type="text" name="sub[name]" id="name"
+	   	   value="<%= @params[:name] %>">
+	<br>
+	<% 5.times do |i| %>
+	<h5>Link <%= i+1 %></h5>
+	<label for="title_<%= i %>">Title</label>
+	<input type="text" name="sub[links_attributes][<%= i %>][title]" id="title_<%= i %>"
+				 value="<%= @params[i.to_s][:title] if @params[i.to_s] %>">
+	<br>
+	<label for="url_<%= i %>">Url</label>
+	<input type="text" name="sub[links_attributes][<%= i %>][url]" id="url_<%= i %>"
+				 value="<%= @params[i.to_s][:url] if @params[i.to_s]%>">
+	<br>
+	<label for="body_<%= i %>">Body</label>
+	<input type="text" name="sub[links_attributes][<%= i %>][body]" id="body_<%= i %>"
+				 value="<%= @params[i.to_s][:body] if @params[i.to_s] %>">
+	<br>
+	<% end %>
+	<input type="submit" value="Create Sub">
+</form>

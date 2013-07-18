@@ -1,7 +1,12 @@
 RedditClone::Application.routes.draw do
   
   resource :session, only: [:new,:create,:destroy]
-  resource :user
+  resources :users, except: :index
+  
+  resources :subs, only: [:new,:show,:create,:destroy]
+  resource :moderator_membership, only: [:create,:destroy]
+  
+  resources :links, only: [:new,:create,:destroy]
   
   
   # The priority is based upon order of creation:
